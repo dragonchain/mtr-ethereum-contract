@@ -1,0 +1,33 @@
+{
+  "name": "mtr_contract",
+  "version": "1.0.0",
+  "description": "Mtr Contract",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Lance Rogers",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "@0x/sol-trace": "^3.0.2",
+    "bignumber.js": "*",
+    "dotenv": "*",
+    "truffle-hdwallet-provider": "*"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1"
+  }
+}

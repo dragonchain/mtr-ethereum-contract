@@ -1,0 +1,8 @@
+*.swp
+*.pyc
+*.envrc
+.direnv/*
+temp/*
+build/*
+node_modules/*
+.env
