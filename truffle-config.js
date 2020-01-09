@@ -46,10 +46,16 @@ module.exports = {
     },
     ropsten: {
       provider: new HDWalletProvider(process.env.MNEMONIC, 
-          `https://ropsten.infura.io/v3/${process.env.INFURA_ROPSTEN_API_KEY}`)
-      ,
+          `https://ropsten.infura.io/v3/${process.env.INFURA_ROPSTEN_API_KEY}`) ,
       network_id: 3,
       gas: 4000000 //make sure this gas allocation isn't over 4M, which is the max
+    },
+    mainnet: {
+      provider: new HDWalletProvider(process.env.MNEMONIC, 
+          `https://mainnet.infura.io/v3/${process.env.INFURA_ROPSTEN_API_KEY}`) ,
+      network_id: 4,
+      gas: 4000000 //make sure this gas allocation isn't over 4M, which is the max
     }
+
   }
 }
