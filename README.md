@@ -13,7 +13,8 @@ Matter (MTR) is an [ERC-20](https://eips.ethereum.org/EIPS/eip-20) token used by
 | Network | Contract Address |
 | ------- | ---------------- |
 | Ropsten  Temp | [0x7BA85BE2fe2918547a8Cf9A673C8b26f18Ed331e](https://ropsten.etherscan.io/address/0x7BA85BE2fe2918547a8Cf9A673C8b26f18Ed331e) |
-
+| ------- | ---------------- |
+| Mainnet |0x41Febd364e5815f860c7D94829804A3638E98edD](https://etherscan.io/address/0x41Febd364e5815f860c7D94829804A3638E98edD)|
 
 ## Etherscan: Verify & Publish Contract Source Code
 - Install global dependency: [truffle-flattener](https://www.npmjs.com/package/truffle-flattener)
