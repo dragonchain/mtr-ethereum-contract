@@ -52,8 +52,9 @@ module.exports = {
     },
     mainnet: {
       provider: new HDWalletProvider(process.env.MNEMONIC, 
-          `https://mainnet.infura.io/v3/${process.env.INFURA_ROPSTEN_API_KEY}`) ,
-      network_id: 4,
+          `https://mainnet.infura.io/v3/${process.env.INFURA_ROPSTEN_API_KEY}`, 3
+      ) ,
+      network_id: 1,
       gas: 4000000 //make sure this gas allocation isn't over 4M, which is the max
     }
 
