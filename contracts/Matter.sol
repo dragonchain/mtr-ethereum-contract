@@ -98,9 +98,9 @@ contract Matter is ERC20, ERC20Detailed, Ownable {
      */
     function mint() public returns (bool) {
         uint256 thisTimestamp = block.timestamp;
-        require(thisTimestamp.sub(_lastMintedBlockTimestamp) > _minMintInterval, "MTR: The required time period has not passed");
+        require(thisTimestamp.sub(_lastMintedBlockTimestamp) > _minMintInterval, "MTR: Cannot mint more than once per period");
         uint256 currentHour = getHour(thisTimestamp);
-        require(currentHour == mintHour, "MTR: Can only mint during the minting hour");
+        require(currentHour == mintHour, "MTR: Can only mint during the minting period");
         mint(thisTimestamp);
         return true;
     }
