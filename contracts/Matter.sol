@@ -26,7 +26,7 @@ contract Matter is ERC20, ERC20Detailed, Ownable {
     using SafeMath for uint256;
 
     uint8 public mintHour;
-    address public bank;
+    address public mintAddress;
     uint256 public maxSupply;
     uint256 private _lastMintedBlockTimestamp;
     uint256 private _mintMTRChunk;
@@ -34,13 +34,15 @@ contract Matter is ERC20, ERC20Detailed, Ownable {
     uint256 constant private SECONDS_PER_DAY = 86400;
     uint256 constant private SECONDS_PER_HOUR = 3600;
 
-    constructor() public ERC20Detailed("Matter", "MTR", 18) {
-        bank = msg.sender;
+    constructor(address _initialMintAddress, uint256 _initialSupply) public ERC20Detailed("Matter", "MTR", 18) {
+        mintAddress = _initialMintAddress;
         mintHour = 21;
         maxSupply = 433494437000000000000000000;
         _mintMTRChunk = 1000000000000000000000;
         _lastMintedBlockTimestamp = 1;
         _minMintInterval = 36000; // Seconds
+
+        _mint(_initialMintAddress, _initialSupply);
     }
 
     /*
@@ -58,22 +60,12 @@ contract Matter is ERC20, ERC20Detailed, Ownable {
     }
 
     /*
-     * @notice set bank address
+     * @notice set mint address
      * @notice must be contract owner
-     * @param newAddress The new bank address where freshly minted MTR will be sent
+     * @param newAddress The new mint address where freshly minted MTR will be sent
      */
-    function setBank(address newAddress) public onlyOwner returns (bool success) {
-        bank = newAddress;
-        return true;
-    }
-
-    /*
-     * @notice set mintHour
-     * @notice must be contract owner
-     * @param newMintHour An hour from 1-23 UTC where minting will be alloud to occur
-     */
-    function setMintHour(uint8 newMintHour) public onlyOwner returns (bool success) {
-        mintHour = newMintHour;
+    function setMintAddress(address newAddress) public onlyOwner returns (bool success) {
+        mintAddress = newAddress;
         return true;
     }
 
@@ -95,7 +87,7 @@ contract Matter is ERC20, ERC20Detailed, Ownable {
 
     function mint(uint256 _timestamp) private returns (bool) {
         require(totalSupply().add(_mintMTRChunk) <= maxSupply, "MTR: Cannot mint more than max supply"); // overflow checks
-        _mint(bank, _mintMTRChunk);
+        _mint(mintAddress, _mintMTRChunk);
         _lastMintedBlockTimestamp = _timestamp;
         return true;
     }
@@ -106,9 +98,9 @@ contract Matter is ERC20, ERC20Detailed, Ownable {
      */
     function mint() public returns (bool) {
         uint256 thisTimestamp = block.timestamp;
-        require(thisTimestamp.sub(_lastMintedBlockTimestamp) > _minMintInterval, "MTR: The required time period has not passed");
+        require(thisTimestamp.sub(_lastMintedBlockTimestamp) > _minMintInterval, "MTR: Cannot mint more than once per period");
         uint256 currentHour = getHour(thisTimestamp);
-        require(currentHour == mintHour, "MTR: Can only mint during the minting hour");
+        require(currentHour == mintHour, "MTR: Can only mint during the minting period");
         mint(thisTimestamp);
         return true;
     }
