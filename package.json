@@ -17,7 +17,7 @@
   "license": "ISC",
   "homepage": "den.dragonchain.com",
   "dependencies": {
-    "@openzeppelin/contracts": "^2.4.0",
+    "@openzeppelin/contracts": "^4.4.2",
     "dotenv": "*",
     "truffle": "^5.1.7",
     "truffle-hdwallet-provider": "*"
